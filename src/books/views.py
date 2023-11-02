@@ -1,5 +1,5 @@
 from django import forms
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout 
 from .forms import UserCreationForm, CustomUserCreationForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -8,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from books.models import Book
+from .forms import BookForm
 
 
 class BooksListView(ListView):
@@ -55,3 +56,35 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+#----------------for adding books---------------------------
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # Redirect to the user profile page
+    else:
+        form = BookForm()
+    return render(request, 'add_book.html', {'form': form})
+# ------------------------------------------------------------------
+#----------------for updating books---------------------------
+def update_book(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES, instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # Redirect to the user profile page
+    else:
+        form = BookForm(instance=book)
+    return render(request, 'update_book.html', {'form': form, 'book': book})
+# -----------------------------------------------------------------------
+
+
+# for deleting books from the list Book model----------------------
+def delete_book(request, book_id):
+    book = Book.objects.get(pk=book_id)
+    book.delete()
+    return redirect('index')
+#------------------------------------------------------------
