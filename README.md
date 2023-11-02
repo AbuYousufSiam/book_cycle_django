@@ -20,4 +20,4 @@ myvenv\Scripts\activate
 deactivate
 
 # live site
-ashrafabir.pythonanywhere.com
+https://ashrafabir.pythonanywhere.com/ 
