@@ -4,6 +4,62 @@
 
 {% if request.user.is_authenticated %}
   <p>{{ request.user.username }}</p>
+
+  <!-- <ul>
+    {% for Book in book_list %}
+    <li>{{ Book.title }}</li>
+    {% endfor %}
+  </ul> -->
+<!-------to style the table................................ -->
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+  
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+  
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+
+  <!-- -------------------------- -->
+  <!-- to render the book list in a table for testing -->
+  <h1>Book List</h1>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Publication Date</th>
+      <th>ISBN</th>
+      <th>Genre</th>
+      <th>Language</th>
+      <th>Cover Image</th>
+      <th>Pages</th>
+      <th>Available</th>
+    </tr>
+    <!-- this for loop is to call books form Book model -->
+    {% for book in book_list %}
+      <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.publication_date }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.genre }}</td>
+        <td>{{ book.language }}</td>
+        <td><img src="{{ book.cover_image.url }}" width="100" height="100"></td>
+        <td>{{ book.pages }}</td>
+        <td>{% if book.is_available %}Yes{% else %}No{% endif %}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <!-- ------------------------------------------ -->
+
   <a href="{% url 'logout' %}">Logout</a>
 {% else %}
   <a href="{% url 'login' %}">Login</a>

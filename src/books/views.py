@@ -4,6 +4,18 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import UserCreationForm, CustomUserCreationForm, LoginForm
 from django.contrib.auth.forms import AuthenticationForm
 
+#cloud_journey/src/pets/views.py
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView, DetailView
+from books.models import Book
+
+
+class BooksListView(ListView):
+    model = Book
+    template_name = 'index.html'  # Make sure to specify the template name
+    context_object_name = 'book_list'  # Specify the context variable name to be used in the template
+
+
 # Create your views here.
 # Home page
 def index(request):
@@ -19,7 +31,7 @@ def signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('home')  # Replace 'home' with the URL name of your home page
+            return redirect('index')  # Replace 'home' with the URL name of your home page
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
@@ -34,7 +46,7 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Replace 'home' with the URL name of your home page
+                return redirect('index')  # Replace 'home' with the URL name of your home page
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
