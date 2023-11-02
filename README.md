@@ -4,9 +4,9 @@ This repository contains 'Book_Cycle' project using django implemented by team C
 
 
 # docker commands 
-docker compose build
-docker compose up
-docker compose down
+docker compose build <br>
+docker compose up <br>
+docker compose down <br>
 
 # activate environment for app
 myvenv\Scripts\activate
