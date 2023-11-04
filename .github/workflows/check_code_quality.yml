@@ -20,8 +20,5 @@ jobs:
       - name: Install Dependencies
         run: pip install django flake8
       - name: Lint with Flake8
-        run: flake8 src
-        with:
-          ignore: "E501"
-          max-line-length: "150"
-          
+        run: flake8 . 
+        
