@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
-        run: pip install django flake8
+        run: pip install django flake8 black
       - name: Format with Black
         run: black src
       - name: Lint with Flake8
