@@ -21,4 +21,5 @@ jobs:
         run: pip install django flake8
       - name: Lint with Flake8
         run: flake8 . 
-        
+      - name: Format with Black
+        run: black .
