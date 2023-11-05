@@ -20,6 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m venv .virtualenvs
           source .virtualenvs/bin/activate
           pip install -r src/requirements.txt
         
