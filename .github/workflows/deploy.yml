@@ -25,8 +25,8 @@ jobs:
           pip install -r src/requirements.txt
       - name: Debug
         run: |
-          ls /home/ashrafabir/.virtualenvs
-          ls /home/ashrafabir/.virtualenvs/ashrafabir.pythonanywhere.com
+          ls .virtualenvs
+          ls .virtualenvs/ashrafabir.pythonanywhere.com
         
         
 
@@ -35,5 +35,5 @@ jobs:
           PA_USERNAME: 'ashrafabir'
           PA_PASSWORD: '84018bb3f1c2a121e204d8f927880e7106b45b8c'
         run: |
-          cd /home/ashrafabir/.virtualenvs/ashrafabir.pythonanywhere.com
+          cd .virtualenvs/ashrafabir.pythonanywhere.com
           python deploy.py
