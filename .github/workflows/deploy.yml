@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          source /home/ashrafabir/.virtualenvs/ashrafabir.pythonanywhere.com/bin/activate
+          source .virtualenvs/bin/activate
           pip install -r src/requirements.txt
         
 
@@ -29,4 +29,5 @@ jobs:
           PA_USERNAME: 'ashrafabir'
           PA_PASSWORD: '84018bb3f1c2a121e204d8f927880e7106b45b8c'
         run: |
+          cd /home/ashrafabir/.virtualenvs/ashrafabir.pythonanywhere.com
           python deploy.py
