@@ -2,7 +2,7 @@ import os
 import subprocess
 
 # Set the path to your PythonAnywhere web app directory
-web_app_directory = "/home/ashrafabir/ashrafabir.pythonanywhere.com"
+web_app_directory = "/home/ashrafabir/.virtualenvs/ashrafabir.pythonanywhere.com"
 
 # Change to the web app directory
 os.chdir(web_app_directory)
