@@ -1,0 +1,29 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: pip install -r src/requirements.txt
+
+      - name: Deploy to PythonAnywhere
+        env:
+          PA_USERNAME: 'ashrafabir'
+          PA_PASSWORD: '84018bb3f1c2a121e204d8f927880e7106b45b8c'
+        run: |
+          python deploy.py
