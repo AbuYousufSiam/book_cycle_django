@@ -23,11 +23,6 @@ jobs:
           python -m venv .virtualenvs
           source .virtualenvs/bin/activate
           pip install -r src/requirements.txt
-      - name: Debug
-        run: |
-          ls .virtualenvs
-          ls .virtualenvs/ashrafabir.pythonanywhere.com
-        
         
 
       - name: Deploy to PythonAnywhere
