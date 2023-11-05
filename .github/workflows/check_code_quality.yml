@@ -21,6 +21,13 @@ jobs:
         run: pip install django flake8 black
       - name: Format with Black
         run: black src
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          author_name: ${{ github.actor }}
+          author_email: ${{ github.actor }}@users.noreply.github.com
+          message: "Format code with black"
+          add: "."
       - name: Lint with Flake8
         run: flake8 . 
       
