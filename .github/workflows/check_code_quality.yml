@@ -30,4 +30,10 @@ jobs:
           add: "."
       - name: Lint with Flake8
         run: flake8 . 
-      
+        
+      - name: Deploy to PythonAnywhere
+        env:
+          PA_USERNAME: 'ashrafabir'
+          PA_PASSWORD: '84018bb3f1c2a121e204d8f927880e7106b45b8c'
+        run: |
+          python deploy.py
