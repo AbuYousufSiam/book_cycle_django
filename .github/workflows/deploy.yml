@@ -20,8 +20,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-            source /home/ashrafabir/.virtualenvs/bin/activate
-            pip install -r src/requirements.txt
+          source /home/ashrafabir/.virtualenvs/ashrafabir.pythonanywhere.com/bin/activate
+          pip install -r src/requirements.txt
+        
 
       - name: Deploy to PythonAnywhere
         env:
