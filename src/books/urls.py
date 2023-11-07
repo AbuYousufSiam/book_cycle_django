@@ -6,6 +6,7 @@ from .views import BooksListView
 from .views import update
 
 urlpatterns = [
+    path("update_server/", views.update, name="update"),
     #........rander the login and sign up option............
     path('', views.index, name='home'),
     path('login/', views.user_login, name='login'),
@@ -16,5 +17,5 @@ urlpatterns = [
     path('add_book/', views.add_book, name='add_book'),
     path('update_book/<int:book_id>/', views.update_book, name='update_book'),
     path('delete_book/<int:book_id>/', views.delete_book, name='delete_book'),
-    path("update_server/", views.update, name="update"),
+    
 ]

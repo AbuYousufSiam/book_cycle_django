@@ -19,7 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 def update(request):
     if request.method == "POST":
        
-        repo = git.Repo("ashrafabir.pythonanywhere.com/") 
+        repo = git.Repo("http://ashrafabir.pythonanywhere.com/") 
         origin = repo.remotes.origin
 
         origin.pull()
