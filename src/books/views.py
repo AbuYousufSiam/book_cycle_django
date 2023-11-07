@@ -10,33 +10,35 @@ from django.views.generic import ListView, DetailView
 from books.models import Book
 from .forms import BookForm
 #for deploying atuomate 
+import os
 import git
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-import os
+
+
 
 @csrf_exempt
 def update(request):
     if request.method == "POST":
-        current_directory = os.getcwd()
-        print("Current working directory:", current_directory)
-
-        repo_path = "../ashrafabir.pythonanywhere.com/"  # Adjust the relative path as needed
-        full_repo_path = os.path.abspath(os.path.join(current_directory, repo_path))
+        # Replace 'yourusername' and 'myrepo' with your actual PythonAnywhere username and repository name
+        username = 'ashrafabir'
+        repository_name = 'https://github.com/AbuYousufSiam/book_cycle_django.git'
+        
+        # Construct the full path to the Git repository
+        full_repo_path = os.path.join('/home', username, repository_name)
 
         try:
             repo = git.Repo(full_repo_path)
             origin = repo.remotes.origin
-
             origin.pull()
-
             return HttpResponse("Updated code on PythonAnywhere")
         except git.exc.NoSuchPathError:
             return HttpResponse("Git repository not found")
     else:
         return HttpResponse("Couldn't update the code on PythonAnywhere")
+
 
     
 class BooksListView(ListView):
