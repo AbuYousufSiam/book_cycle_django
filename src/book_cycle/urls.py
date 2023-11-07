@@ -7,12 +7,11 @@ from django.conf.urls.static import static
 
 
 # ........................................
-from books import views  # Import views from the current app
-from books.views import update
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("books.urls")),
-    #path("update_server/", views.update, name="update"),
+   
 ]
 
 
