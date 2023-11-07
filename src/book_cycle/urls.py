@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-
+from . import views
 # for media picture issue
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from ..books.views import update 
 
 # ........................................
 

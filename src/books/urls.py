@@ -3,6 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 #.......this is to call the booklistview.................................
 from .views import BooksListView
+from .views import update
 
 urlpatterns = [
     #........rander the login and sign up option............
