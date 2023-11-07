@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from books.models import Book
 from .forms import BookForm
-#for deploying atuomate 
+#for deploying atuomate  code-------------------------------------------------
 import os
 import git
 from django.shortcuts import render
@@ -32,7 +32,7 @@ def update(request):
     else:
         return HttpResponse("Couldn't update the code on PythonAnywhere")
 
-
+# ---------------------------------------------------------------------------
     
 class BooksListView(ListView):
     model = Book
