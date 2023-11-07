@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 
 # ........................................
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include("books.urls"))]
+urlpatterns = [path("admin/", admin.site.urls), path("", include("books.urls")),]
 
 # for media picture loading issue
 if settings.DEBUG:

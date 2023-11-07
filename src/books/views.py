@@ -9,8 +9,25 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
 from books.models import Book
 from .forms import BookForm
+#for deploying atuomate 
+import git
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
+def update(request):
+    if request.method == "POST":
+       
+        repo = git.Repo("ashrafabir.pythonanywhere.com/") 
+        origin = repo.remotes.origin
 
+        origin.pull()
+
+        return HttpResponse("Updated code on PythonAnywhere")
+    else:
+        return HttpResponse("Couldn't update the code on PythonAnywhere") 
+    
 class BooksListView(ListView):
     model = Book
     template_name = 'index.html'  # Make sure to specify the template name
