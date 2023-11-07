@@ -6,3 +6,4 @@ tzdata==2023.3
 arviz
 typing-extensions
 flake8
+GitPython
