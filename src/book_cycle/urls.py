@@ -12,7 +12,7 @@ from books.views import update
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("books.urls")),
-    path("update_server/", views.update, name="update"),
+    #path("update_server/", views.update, name="update"),
 ]
 
 
