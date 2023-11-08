@@ -31,9 +31,6 @@ def update(request):
     else:
         return HttpResponse("Couldn't update the code on PythonAnywhere")
 
-# myapp/views.py
-from django.http import HttpResponse
-import os
 
 def touch_wsgi(request):
     wsgi_file = "/var/www/ashrafabir_pythonanywhere_com_wsgi.py"
