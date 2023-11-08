@@ -22,20 +22,14 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def update(request):
     if request.method == "POST":
-        repo_path = 'ashrafabir.pythonanywhere.com/'  # Your PythonAnywhere project path
-        try:
-            repo = git.Repo(repo_path)
-            origin = repo.remotes.origin
-            origin.pull()
-            return HttpResponse("Updated code on PythonAnywhere")
-        except git.exc.NoSuchPathError:
-            return HttpResponse("Git repository not found")
-        except git.exc.GitCommandError as e:
-            return HttpResponse(f"Git command error: {e}")
-        except Exception as e:
-            return HttpResponse(f"An unexpected error occurred: {e}")
+        repo = git.Repo("test.pythonanywhere.com/") 
+        origin = repo.remotes.origin
+
+        origin.pull()
+
+        return HttpResponse("Updated code on PythonAnywhere")
     else:
-        return HttpResponse(f"Invalid request method : {e}")
+        return HttpResponse("Couldn't update the code on PythonAnywhere")
 
 # ---------------------------------------------------------------------------
     
