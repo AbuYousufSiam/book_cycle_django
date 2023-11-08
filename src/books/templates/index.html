@@ -36,7 +36,7 @@
   <li>
     {{ book.title }}
     | <a href="{% url 'update_book' book.id %}">Update</a>
-    | <a href="{% url 'delete_book' book.id %}">Delete</a>
+    | <a href="{% url 'delete_book' book.id %}">Delete Now</a>
   </li>
   {% empty %}
   <li>No books added.</li>
