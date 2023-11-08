@@ -22,7 +22,7 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def update(request):
     if request.method == "POST":
-        repo_path = '/home/ashrafabir/ashrafabir.pythonanywhere.com/'  # Your PythonAnywhere project path
+        repo_path = 'ashrafabir.pythonanywhere.com/'  # Your PythonAnywhere project path
         try:
             repo = git.Repo(repo_path)
             origin = repo.remotes.origin
