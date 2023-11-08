@@ -35,7 +35,7 @@ def update(request):
         except Exception as e:
             return HttpResponse(f"An unexpected error occurred: {e}")
     else:
-        return HttpResponse("Invalid request method")
+        return HttpResponse(f"Invalid request method : {e}")
 
 # ---------------------------------------------------------------------------
     
