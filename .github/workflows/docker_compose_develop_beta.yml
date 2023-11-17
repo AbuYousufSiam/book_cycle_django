@@ -3,7 +3,8 @@ name: Build and Push "beta" Image
 on:
   push:
     branches:
-      - develop , wr
+      - develop
+      - wr 
 
 jobs:
   build:
