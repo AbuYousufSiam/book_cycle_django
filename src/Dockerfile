@@ -2,7 +2,12 @@ FROM python:3.12-slim
 WORKDIR /app
 RUN apt update
 # RUN apt install -y default-libmysqld-dev
-COPY . /app/
-RUN pip install -r requirements.txt
+# Copy the requirements.txt file into the container at /app/
+COPY src/requirements.txt /app/
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Install any needed packages specified in requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+COPY . /app/
+
+
+CMD ["sh", "-c", "python src/manage.py migrate && python src/manage.py runserver 0.0.0.0:8080"]
