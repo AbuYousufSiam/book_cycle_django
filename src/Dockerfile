@@ -8,7 +8,7 @@ WORKDIR /app
 RUN apt-get update
 
 # Copy the requirements.txt file into the container at /app/
-COPY ./requirements.txt /app/
+COPY ../requirements.txt /app/
 
 # Copy the entire project into the container at /app/
 COPY . /app/
