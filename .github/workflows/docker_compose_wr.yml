@@ -20,15 +20,16 @@ jobs:
         run: docker-compose build app
         working-directory: .
 
+      - name: Tag Docker Compose Service
+        run: docker tag app ashabir/book_cycle_django-app:wr
+        working-directory: .
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Tag Docker Compose Service
-        run: docker tag book_cycle_django-app:wr ashabir/book_cycle_django-app:wr
-        working-directory: .
 
       - name: Push Docker Compose Image
         run: docker push ashabir/book_cycle_django-app:wr
