@@ -20,7 +20,7 @@ jobs:
         run: docker-compose build app
 
       - name: Tag Docker Compose image
-        run: docker tag $(docker-compose images -q app) ashabir/book_cycle_django-app:tagname
+        run: docker tag $(docker-compose images -q app) ashabir/book_cycle_django-app:wr
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -29,5 +29,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker Compose Image
-        run: docker push ashabir/book_cycle_django-app:tagname
+        run: docker push ashabir/book_cycle_django-app:wr
 
