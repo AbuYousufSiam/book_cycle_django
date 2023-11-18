@@ -1,6 +1,6 @@
 FROM python:3.12-slim
-WORKDIR /app
-COPY src/requirements.txt /app/
+WORKDIR /src
+COPY requirements.txt /src/
 # Install Git
 RUN apt-get update && apt-get install -y git
 # Configure Git for Git Python
@@ -10,6 +10,6 @@ ENV GIT_PYTHON_REFRESH=quiet
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copy the rest of the application code
-COPY . /app/
+COPY . /src/
 
-CMD ["sh", "-c", "python ./manage.py migrate && python ./manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "python src/manage.py migrate && python src/manage.py runserver 0.0.0.0:8000"]
