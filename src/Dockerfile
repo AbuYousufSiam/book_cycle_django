@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 WORKDIR /src
-COPY requirements.txt /src/
+COPY src/requirements.txt /src/
 # Install Git
 RUN apt-get update && apt-get install -y git
 # Configure Git for Git Python
