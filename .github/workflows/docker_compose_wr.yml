@@ -1,9 +1,8 @@
-name: Build and Push "beta" Image
+name: Build and Push "workflowtest" Image
 
 on:
   push:
     branches:
-      - develop
       - wr
 
 jobs:
@@ -34,5 +33,5 @@ jobs:
           context: . 
           file: ./src/Dockerfile
           push: true 
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/book_cycle_django-app:beta
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/book_cycle_django-app:wr
         
