@@ -31,7 +31,7 @@ jobs:
         name: Build and push 
         uses: docker/build-push-action@v5 
         with: 
-          context: src 
+          context: . 
           file: ./Dockerfile
           push: true 
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/book_cycle_django-app:beta
