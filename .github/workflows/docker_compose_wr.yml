@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Tag Docker Compose Service
-        run: docker tag app ashabir/book_cycle_django-app:wr
+        run: docker tag book_cycle_django-app:wr ashabir/book_cycle_django-app:wr
         working-directory: .
 
       - name: Push Docker Compose Image
