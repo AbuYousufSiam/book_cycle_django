@@ -1,4 +1,4 @@
-name: Build and Push "wr" Image
+name: Build and Push Image in workflow test
 
 on:
   push:
@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      DOCKER_IMAGE_TAG: wr
 
     steps:
       - name: Checkout Repository
@@ -19,8 +22,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Docker Compose Service
-        run: docker-compose build app --tag ${{ secrets.DOCKERHUB_USERNAME }}/book_cycle_django-app:wr
+      - name: Set up Docker Compose
+        run: |
+          docker-compose --version
+          docker-compose version
+          docker version
 
-      - name: Push Docker Compose Image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/book_cycle_django-app:wr
+      - name: Build and Push Docker Compose Image
+        run: |
+          docker-compose -f docker-compose.yml build app --build-arg IMAGE_TAG=${DOCKER_IMAGE_TAG}
+          docker-compose -f docker-compose.yml push app
+
