@@ -1,11 +1,8 @@
+#cloud_journey/docker-compose.yml
 version: '3'
 services:
   app:
-    build:
-      context: src
-      args:
-        - IMAGE_TAG=latest
-    image: ashabir/book_cycle_django-app:${IMAGE_TAG}
+    build: src
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./src:/app
