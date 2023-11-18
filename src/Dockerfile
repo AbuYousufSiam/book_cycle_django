@@ -23,4 +23,4 @@ ENV GIT_PYTHON_REFRESH=quiet
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Command to run on container start
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["bash", "-c", "python src/manage.py migrate && python src/manage.py runserver 0.0.0.0:8000"]
