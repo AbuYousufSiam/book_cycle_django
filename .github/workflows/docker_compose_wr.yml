@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - wr
+      - f_cc2
 
 jobs:
   build:
