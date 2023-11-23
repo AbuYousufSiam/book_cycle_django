@@ -17,6 +17,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      
       - name: Install Dependencies
         run: pip install django flake8 black
       - name: Format with Black
@@ -28,5 +29,7 @@ jobs:
           author_email: ${{ github.actor }}@users.noreply.github.com
           message: "Format code with black"
           add: "."
+          # GitHub Token for authentication
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Lint with Flake8
         run: flake8 . 
