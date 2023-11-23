@@ -24,3 +24,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Command to run on container start
 CMD ["bash", "-c", "python src/manage.py migrate && python src/manage.py runserver 0.0.0.0:8000"]
+
