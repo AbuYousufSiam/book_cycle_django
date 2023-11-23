@@ -30,6 +30,6 @@ jobs:
           message: "Format code with black"
           add: "."
           # GitHub Token for authentication
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.HUB_TOKEN }}
       - name: Lint with Flake8
         run: flake8 . 
