@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - wr
 
 jobs:
   build:
