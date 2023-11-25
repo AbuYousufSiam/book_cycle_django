@@ -17,7 +17,7 @@
       <!--Navbar-->
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Book_Cycle</a>
+          <a class="navbar-brand" href="{% url 'index' %}">Book_Cycle</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -57,6 +57,10 @@
                             <div class="mb-3">
                               {{ form.email.label_tag }}
                               {{ form.email }}
+                            </div>
+                            <div class="mb-3">
+                              {{ form.address.label_tag }}
+                              {{ form.address }}
                             </div>
                             <div class="mb-3">
                               {{ form.password1.label_tag }}
