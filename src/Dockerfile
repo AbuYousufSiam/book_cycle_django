@@ -1,26 +1,18 @@
-# Use a specific version of Python image
 FROM python:3.12-slim
-
-# Set the working directory to /app
 WORKDIR /app
-
-# Update the package index
-RUN apt-get update
-
+RUN apt update
+# RUN apt install -y default-libmysqld-dev
 # Copy the requirements.txt file into the container at /app/
-COPY src/requirements.txt /app/
-
-# Copy the entire project into the container at /app/
-COPY . /app/
-
-# Install Git
-RUN apt-get install -y git
+RUN apt install -y pkg-config libhdf5-dev gcc
+RUN pip install --upgrade pip setuptools wheel
+COPY ./requirements.txt /app/
 
 # Configure Git for Git Python
 ENV GIT_PYTHON_REFRESH=quiet
 
-# Upgrade pip and install dependencies
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Install any needed packages specified in requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+COPY . /app/
 
-# Command to run on container start
-CMD ["bash", "-c", "python src/manage.py migrate && python src/manage.py runserver 0.0.0.0:8000"]
+
+CMD ["sh", "-c", "python src/manage.py migrate && python src/manage.py runserver 0.0.0.0:8080"]

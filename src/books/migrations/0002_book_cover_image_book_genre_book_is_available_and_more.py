@@ -4,40 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('books', '0001_initial'),
+        ("books", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='book',
-            name='cover_image',
-            field=models.ImageField(default=0, upload_to='book_covers/'),
+            model_name="book",
+            name="cover_image",
+            field=models.ImageField(default=0, upload_to="book_covers/"),
         ),
         migrations.AddField(
-            model_name='book',
-            name='genre',
-            field=models.CharField(default='n', max_length=50),
+            model_name="book",
+            name="genre",
+            field=models.CharField(default="n", max_length=50),
         ),
         migrations.AddField(
-            model_name='book',
-            name='is_available',
+            model_name="book",
+            name="is_available",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='book',
-            name='language',
-            field=models.CharField(default='en', max_length=20),
+            model_name="book",
+            name="language",
+            field=models.CharField(default="en", max_length=20),
         ),
         migrations.AddField(
-            model_name='book',
-            name='pages',
+            model_name="book",
+            name="pages",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='book',
-            name='price',
+            model_name="book",
+            name="price",
             field=models.DecimalField(decimal_places=2, default=0, max_digits=10),
         ),
     ]
