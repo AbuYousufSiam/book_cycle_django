@@ -76,31 +76,6 @@ def signup(request):
         profile_form = ProfileForm()
     return render(request, 'signup.html', {'user_form': user_form, 'profile_form': profile_form})
 
-# def signup(request):
-#     if request.method == "POST":
-#         form = CustomUserCreationForm(request.POST)
-#         profile_form = ProfileForm(request.POST)
-#         if form.is_valid() and profile_form.is_valid():
-#             user = form.save()
-            
-#             # Create a Profile instance and associate it with the user
-#             profile = Profile.objects.create(user=user, address=profile_form.cleaned_data.get("address"))
-            
-#             username = form.cleaned_data.get("username")
-#             password = form.cleaned_data.get("password1")
-            
-#             user = authenticate(username=username, password=password)
-            
-#             login(request, user)
-#             return redirect("index")
-#     else:
-#         form = CustomUserCreationForm()
-#         profile_form = ProfileForm()
-
-#     return render(request, "signup.html", {"form": form, "profile_form": profile_form})
-
-
-
 # login page
 def user_login(request):
     if request.method == "POST":
