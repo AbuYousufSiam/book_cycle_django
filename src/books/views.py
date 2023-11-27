@@ -1,14 +1,14 @@
 from django import forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserCreationForm, CustomUserCreationForm, LoginForm
+from .forms import UserCreationForm, CustomUserCreationForm, LoginForm ,ProfileForm
 from django.contrib.auth.forms import AuthenticationForm
 
 # cloud_journey/src/pets/views.py
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
-from books.models import Book
-from .forms import BookForm
+from books.models import Book,Profile
+from .forms import BookForm,ProfileForm
 
 # for deploying atuomate  code-------------------------------------------------
 import os
@@ -56,21 +56,49 @@ def index(request):
 
 
 # signup page
+
 def signup(request):
-    if request.method == "POST":
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password1")
+    if request.method == 'POST':
+        user_form = CustomUserCreationForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+            username = user_form.cleaned_data.get('username')
+            password = user_form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect(
-                "index"
-            )  # Replace 'home' with the URL name of your home page
+            return redirect('index')  # Replace 'index' with your desired URL
     else:
-        form = CustomUserCreationForm()
-    return render(request, "signup.html", {"form": form})
+        user_form = CustomUserCreationForm()
+        profile_form = ProfileForm()
+    return render(request, 'signup.html', {'user_form': user_form, 'profile_form': profile_form})
+
+# def signup(request):
+#     if request.method == "POST":
+#         form = CustomUserCreationForm(request.POST)
+#         profile_form = ProfileForm(request.POST)
+#         if form.is_valid() and profile_form.is_valid():
+#             user = form.save()
+            
+#             # Create a Profile instance and associate it with the user
+#             profile = Profile.objects.create(user=user, address=profile_form.cleaned_data.get("address"))
+            
+#             username = form.cleaned_data.get("username")
+#             password = form.cleaned_data.get("password1")
+            
+#             user = authenticate(username=username, password=password)
+            
+#             login(request, user)
+#             return redirect("index")
+#     else:
+#         form = CustomUserCreationForm()
+#         profile_form = ProfileForm()
+
+#     return render(request, "signup.html", {"form": form, "profile_form": profile_form})
+
 
 
 # login page
