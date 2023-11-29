@@ -4,12 +4,17 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE
+    )  # Connecting with the User model
+    # Adding new attributes for user
     address = models.CharField(max_length=200)
+    phone = models.CharField(max_length=12, null=True)
 
     def __str__(self):
         return str(self.user)
-    
+
+
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
