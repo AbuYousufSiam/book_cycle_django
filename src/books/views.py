@@ -59,22 +59,22 @@ def index(request):
 
 def signup(request):
     if request.method == 'POST':
-        user_form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         profile_form = ProfileForm(request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
+        if form.is_valid() and profile_form.is_valid():
+            user = form.save()
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            username = user_form.cleaned_data.get('username')
-            password = user_form.cleaned_data.get('password1')
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('index')  # Replace 'index' with your desired URL
     else:
-        user_form = CustomUserCreationForm()
+        form = CustomUserCreationForm()
         profile_form = ProfileForm()
-    return render(request, 'signup.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'signup.html', {'form': form, 'profile_form': profile_form})
 
 # login page
 def user_login(request):
