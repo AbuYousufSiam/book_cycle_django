@@ -5,79 +5,14 @@
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
-<p>{{ request.user.username }}</p>
-
-
-<!-------to style the table................................ -->
-<style>
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  th,
-  td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  }
-
-  th {
-    background-color: #f2f2f2;
-  }
-</style>
-<!-- -------------------------- -->
-
 <!-- for updating books and deleting them from book model book_list   -->
-<h1>Books</h1>
-<ul>
-  {% for book in book_list %}
-  <li>
+<!-- {% for book in book_list %}
     {{ book.title }}
     | <a href="{% url 'update_book' book.id %}">Update</a>
     | <a href="{% url 'delete_book' book.id %}">Delete Now</a>
-  </li>
-  {% empty %}
-  <li>No books added.</li>
-  {% endfor %}
-</ul>
-<a href="{% url 'add_book' %}">Add Book</a>
-<!-- -------------------------------------------------------- -->
-
-<!-- to render the book list in a table for testing -->
-<h1>Book List</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Publication Date</th>
-    <th>ISBN</th>
-    <th>Genre</th>
-    <th>Language</th>
-    <th>Cover Image</th>
-    <th>Pages</th>
-    <th>Available</th>
-  </tr>
-  <!-- this for loop is to call books form Book model -->
-  {% for book in book_list %}
-  <tr>
-    <td>{{ book.title }}</td>
-    <td>{{ book.author }}</td>
-    <td>{{ book.publication_date }}</td>
-    <td>{{ book.isbn }}</td>
-    <td>{{ book.genre }}</td>
-    <td>{{ book.language }}</td>
-    <td><img src="{{ book.cover_image.url }}" width="100" height="100"></td>
-    <td>{{ book.pages }}</td>
-    <td>{% if book.is_available %}Yes{% else %}No{% endif %}</td>
-  </tr>
-  {% endfor %}
-</table>
+  {% endfor %} -->
 <!-- ------------------------------------------ -->
 
-<a href="{% url 'logout' %}">Logout</a>
-{% else %}
 <div class="container-fluid bg-light fixed-top vh-100">
   <div class="row">
     <!--Navbar-->
@@ -124,6 +59,5 @@
   </div>
 
 </div>
-{% endif %}
 
 {% endblock %}
