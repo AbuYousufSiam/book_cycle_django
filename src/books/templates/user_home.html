@@ -54,7 +54,7 @@
         <div class="container mt-5 pt-4 text-dark">
             <div class="row">
                 <div class="col-sm-2 text-center">
-                    <div><img src="Image1.png" class="rounded-circle" alt="profile"
+                    <div><img src="\books\templates\Image1.png" class="rounded-circle" alt="profile"
                             style="height: 150px; width:100px;" />
                     </div>
                     <!-- User Name -->
@@ -92,14 +92,14 @@
                             Name of the post creator
                         </div>
                         <div class="row card-body">
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
                                 <h5 class="card-title">{{ book.title }}</h5>
                                 <p class="card-text">Author: {{ book.author }}</p>
                                 <p class="card-text">Pages: {{ book.pages }}</p>
                                 <p class="card-text">Language: {{ book.language }}</p>
                                 <p class="card-text">Descriptio of the book, owner and contact details.</p>
                             </div>
-                            <img class="col-sm-6 img-thumbnail" style="height: 300px;" src="{{ book.cover_image.url }}"
+                            <img class="col-sm-4 img-thumbnail" style="height: 300px;" src="{{ book.cover_image.url }}"
                                 alt="book_image" />
                         </div>
                         <div class="card-footer">{% if book.is_available %}Available{% else %}Not Available{% endif %}
