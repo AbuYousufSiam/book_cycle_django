@@ -9,7 +9,7 @@ class Profile(models.Model):
     )  # Connecting with the User model
     # Adding new attributes for user
     address = models.CharField(max_length=200)
-    phone = models.CharField(max_length=12, null=True)
+    phone = models.PositiveBigIntegerField(null=True)
 
     def __str__(self):
         return str(self.user)
