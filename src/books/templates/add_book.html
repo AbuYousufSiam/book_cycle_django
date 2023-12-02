@@ -3,6 +3,8 @@
 {% block content %}
 <h1>Add Book</h1>
 <form method="post" enctype="multipart/form-data">
+    <!-- User Name -->
+    <h2>{{ request.user.username }}</h2>
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Add Book</button>

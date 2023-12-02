@@ -16,15 +16,21 @@ class Profile(models.Model):
 
 
 class Book(models.Model):
+    # Adding new attributes for user
+    choice_list = [
+        ("Wanted", "Wanted"),
+        ("Available", "Available"),
+    ]
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
-    publication_date = models.DateField()
-    isbn = models.CharField(max_length=13)
-    genre = models.CharField(max_length=50, default="n")
-    language = models.CharField(max_length=20, default="en")
+    details = models.CharField(max_length=500, default="No description")
+    genre = models.CharField(max_length=50, default="Not defined")
+    language = models.CharField(max_length=20, default="Not defined")
     cover_image = models.ImageField(upload_to="book_covers/", default=0)
     pages = models.PositiveIntegerField(default=0)  # Default value set to 0
-    is_available = models.BooleanField(default=True)
+    is_available = models.CharField(max_length=20, choices=choice_list)
+    user = models.CharField(max_length=50, default="Anonymous")
+    upload_date = models.DateField()
 
     def __str__(self):
-        return self.title
+        return str(self.user)
