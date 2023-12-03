@@ -5,6 +5,7 @@ on:
     branches:
       - wr
       - f_cc2
+      - feature/cc-1
 
 jobs:
   build:
