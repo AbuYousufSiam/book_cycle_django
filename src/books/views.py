@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserCreationForm, CustomUserCreationForm, LoginForm, ProfileForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 # cloud_journey/src/pets/views.py
 from django.views.generic.edit import CreateView, UpdateView
@@ -103,10 +104,12 @@ def user_logout(request):
 
 
 # ----------------for adding books---------------------------
+@login_required
 def add_book(request):
     if request.method == "POST":
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
             return redirect("index")  # Redirect to the user profile page
     else:

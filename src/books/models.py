@@ -1,6 +1,7 @@
 # books/models.py
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Profile(models.Model):
@@ -17,6 +18,7 @@ class Profile(models.Model):
 
 class Book(models.Model):
     # Adding new attributes for user
+    
     choice_list = [
         ("Wanted", "Wanted"),
         ("Available", "Available"),
@@ -29,8 +31,8 @@ class Book(models.Model):
     cover_image = models.ImageField(upload_to="book_covers/", default=0)
     pages = models.PositiveIntegerField(default=0)  # Default value set to 0
     is_available = models.CharField(max_length=20, choices=choice_list)
-    user = models.CharField(max_length=50, default="Anonymous")
-    upload_date = models.DateField()
+    upload_date = models.DateField(auto_now_add=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.user)
+        return self.title
