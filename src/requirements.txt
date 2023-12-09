@@ -8,3 +8,4 @@ typing-extensions
 flake8
 GitPython
 django-widget-tweaks
+mysqlclient

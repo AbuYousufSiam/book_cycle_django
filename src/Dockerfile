@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 WORKDIR /app
 RUN apt update
-# RUN apt install -y default-libmysqld-dev
+RUN apt install -y default-libmysqld-dev
 # Copy the requirements.txt file into the container at /app/
 RUN apt install -y pkg-config libhdf5-dev gcc
 RUN pip install --upgrade pip setuptools wheel

@@ -89,7 +89,7 @@
                     {% for book in book_list %}
                     <div class="card m-2">
                         <div class="card-header">
-                            Name of the post creator
+                           {{ Name of the post creator}}
                         </div>
                         <div class="row card-body">
                             <div class="col-sm-8">
@@ -102,8 +102,7 @@
                             <img class="col-sm-4 img-thumbnail" style="height: 300px;" src="{{ book.cover_image.url }}"
                                 alt="book_image" />
                         </div>
-                        <div class="card-footer">{% if book.is_available %}Available{% else %}Not Available{% endif %}
-                        </div>
+                        <div class="card-footer">{{book.is_available}}</div>
                     </div>
                     {% endfor %}
 
