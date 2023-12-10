@@ -10,3 +10,4 @@ GitPython
 django-widget-tweaks
 mysqlclient
 django-environ
+python-dotenv
