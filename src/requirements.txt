@@ -9,3 +9,4 @@ flake8
 GitPython
 django-widget-tweaks
 mysqlclient
+django-environ
