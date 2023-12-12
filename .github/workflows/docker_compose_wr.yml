@@ -5,6 +5,8 @@ on:
     branches:
       - wr
       - f_cc2
+      - feature/cc-1
+      - newdir
 
 jobs:
   build:

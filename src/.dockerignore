@@ -1,0 +1,26 @@
+# Exclude Django migration files
+**src/books/migrations/
+**/__pycache__/
+**/migrations/
+migrations
+
+# Exclude database file
+db.sqlite3
+
+# Exclude other unnecessary files
+*.pyc
+*.pyo
+*.pyd
+*.py~
+
+# Exclude editor-specific files and directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.komodoproject
+
+# Exclude Docker related files
+.dockerignore
+Dockerfile
+docker-compose.yml

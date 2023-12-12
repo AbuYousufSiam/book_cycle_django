@@ -20,4 +20,7 @@ myvenv\Scripts\activate
 deactivate
 
 # live site
-https://ashrafabir.pythonanywhere.com/ 
+
+
+python -m http.server
+10.10.192.10

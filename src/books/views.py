@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserCreationForm, CustomUserCreationForm, LoginForm, ProfileForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 # cloud_journey/src/pets/views.py
 from django.views.generic.edit import CreateView, UpdateView
@@ -71,7 +72,7 @@ def signup(request):
             password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect("index")  # Replace 'index' with your desired URL
+            return redirect("user_home")  # Replace 'index' with your desired URL
     else:
         form = CustomUserCreationForm()
         profile_form = ProfileForm()
@@ -103,12 +104,14 @@ def user_logout(request):
 
 
 # ----------------for adding books---------------------------
+@login_required
 def add_book(request):
     if request.method == "POST":
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
-            return redirect("index")  # Redirect to the user profile page
+            return redirect("user_home")  # Redirect to the user profile page
     else:
         form = BookForm()
     return render(request, "add_book.html", {"form": form})
@@ -135,7 +138,7 @@ def update_book(request, book_id):
 def delete_book(request, book_id):
     book = Book.objects.get(pk=book_id)
     book.delete()
-    return redirect("index")
+    return redirect("user_home")
 
 
 # ------------------------------------------------------------
