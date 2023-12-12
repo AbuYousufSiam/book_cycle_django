@@ -13,9 +13,10 @@ urlpatterns = [
     path("", views.index, name="home"),
     path("login/", views.user_login, name="login"),
     # ......this path is to show the list of books............
-    path("index/", BooksListView.as_view(), name="index"),
+    path("index/", views.index, name="index"),
+    path("user_home/", BooksListView.as_view(), name="user_home"),
     path("signup/", views.signup, name="signup"),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path("add_book/", views.add_book, name="add_book"),
     path("update_book/<int:book_id>/", views.update_book, name="update_book"),
     path("delete_book/<int:book_id>/", views.delete_book, name="delete_book"),

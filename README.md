@@ -18,9 +18,13 @@ myvenv\Scripts\activate
 deactivate
 
 # live site
-https://ashrafabir.pythonanywhere.com/ 
+
+#ftp servermaking code
+python -m http.server <br>
+
 
 # Work flows
 ### until now our github actions check code quality,formate it with black <br>
 ### build and pushes the docker images into the docker hub registry autometicly for main and beta versions separately for push on main and develop branch
+
 

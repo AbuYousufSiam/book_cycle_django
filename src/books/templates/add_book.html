@@ -1,10 +1,189 @@
-{% extends "base.html" %}
+{% load widget_tweaks %}
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<h1>Add Book</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Book</button>
-</form>
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book_Cycle_Post{</title>
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--CSS Files-->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <!--Font Awesome-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></script>
+    <!--Google Font: OpenSans-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Main content starts here -->
+    <div class="container-fluid bg-light">
+        <!--Navbar Starts Here-->
+        <div class="row">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="{% url 'index' %}">Book_Cycle</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'index' %}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'user_home' %}">Post_Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!--Navbar Ends Here-->
+
+        <!-- Form part starts here -->
+        <div class="row">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="container mt-5 p-5">
+                    <!-- heading -->
+                    <div class="row justify-content-center bg-light">
+                        <div class="col-6 text-center">
+                            <h1><b>Post New Book</b></h1>
+                        </div>
+                    </div>
+
+                    <!-- Title -->
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-sm-6 mt-1">
+                            <label for="title" class="form-label">
+                                <h6>{{ form.title.label_tag }}</h6>
+                            </label>
+                            {{ form.title|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <!-- Author name -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="author" class="form-label">
+                                <h6>{{ form.author.label_tag }}</h6>
+                            </label>
+                            {{ form.author|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <!-- Details -->
+                    <div class=" row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="details" class="form-label">
+                                <h6>{{ form.details.label_tag }}</h6>
+                            </label>
+                            {{ form.details|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <!-- Genre -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="genre" class="form-label">
+                                <h6>{{ form.genre.label_tag }}</h6>
+                            </label>
+                            {{ form.genre|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <!-- Language -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="language" class="form-label">
+                                <h6>{{ form.language.label_tag }}</h6>
+                            </label>
+                            {{ form.language|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <!-- Cover Image -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="cover_image" class="form-label">
+                                <h6>{{ form.cover_image.label_tag }}</h6>
+                            </label>
+                            {{ form.cover_image|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <!-- Pages -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="pages" class="form-label">
+                                <h6>{{ form.pages.label_tag }}</h6>
+                            </label>
+                            {{ form.pages|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <!-- Is Availabel -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="is_available" class="form-label">
+                                <h6>{{ form.is_available.label_tag }}</h6>
+                            </label>
+                            {{ form.is_available|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <!-- Upload Date -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="upload_date" class="form-label">
+                                <h6>{{ form.upload_date.label_tag }}</h6>
+                            </label>
+                            {{ form.upload_date|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <!-- User -->
+                    <div class="row justify-content-center">
+                        <div class="col-sm-6 mt-1">
+                            <label for="user" class="form-label">
+                                <h6>{{ form.user.label_tag }}</h6>
+                            </label>
+                            {{ form.user|add_class:"form-control" }}
+                        </div>
+                    </div>
+
+                    <!-- Sign Up Button -->
+                    <div class="row">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-lg btn-outline-secondary mt-4 pl-4 pr-4">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Form part ends here -->
+
+        <!-- Add your footer content here -->
+        <div class="row">
+            <footer class="bg-dark text-center text-white">
+                <div class="container-fluid p-3">
+                    <!-- Copyright -->
+                    © 2023 Copyright:
+                    <a href="{% url 'index' %}">Book_Cycle</a>
+                </div>
+            </footer>
+        </div>
+        <!-- Footer content ends here -->
+    </div>
+    <!-- Main content ends here -->
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

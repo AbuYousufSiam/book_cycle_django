@@ -1,14 +1,15 @@
 from django import forms
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserCreationForm, CustomUserCreationForm, LoginForm
+from .forms import UserCreationForm, CustomUserCreationForm, LoginForm, ProfileForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 # cloud_journey/src/pets/views.py
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DetailView
-from books.models import Book
-from .forms import BookForm
+from books.models import Book, Profile
+from .forms import BookForm, ProfileForm
 
 # for deploying atuomate  code-------------------------------------------------
 import os
@@ -43,7 +44,7 @@ def touch_wsgi(request):
 
 class BooksListView(ListView):
     model = Book
-    template_name = "index.html"  # Make sure to specify the template name
+    template_name = "user_home.html"  # Make sure to specify the template name
     context_object_name = (
         "book_list"  # Specify the context variable name to be used in the template
     )
@@ -56,21 +57,26 @@ def index(request):
 
 
 # signup page
+
+
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
+        profile_form = ProfileForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
             user = form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect(
-                "index"
-            )  # Replace 'home' with the URL name of your home page
+            return redirect("user_home")  # Replace 'index' with your desired URL
     else:
         form = CustomUserCreationForm()
-    return render(request, "signup.html", {"form": form})
+        profile_form = ProfileForm()
+    return render(request, "signup.html", {"form": form, "profile_form": profile_form})
 
 
 # login page
@@ -84,7 +90,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 return redirect(
-                    "index"
+                    "user_home"
                 )  # Replace 'home' with the URL name of your home page
     else:
         form = AuthenticationForm()
@@ -98,12 +104,14 @@ def user_logout(request):
 
 
 # ----------------for adding books---------------------------
+@login_required
 def add_book(request):
     if request.method == "POST":
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
-            return redirect("index")  # Redirect to the user profile page
+            return redirect("user_home")  # Redirect to the user profile page
     else:
         form = BookForm()
     return render(request, "add_book.html", {"form": form})
@@ -130,7 +138,7 @@ def update_book(request, book_id):
 def delete_book(request, book_id):
     book = Book.objects.get(pk=book_id)
     book.delete()
-    return redirect("index")
+    return redirect("user_home")
 
 
 # ------------------------------------------------------------
