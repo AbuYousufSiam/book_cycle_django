@@ -1,8 +1,6 @@
 # book_cycle_django
 This repository contains 'Book_Cycle' project using django implemented by team Cloud_Crafters
 
-
-
 # docker commands 
 docker compose build <br>
 docker compose up <br>
@@ -21,6 +19,12 @@ deactivate
 
 # live site
 
+#ftp servermaking code
+python -m http.server <br>
 
-python -m http.server
-10.10.192.10
+
+# Work flows
+### until now our github actions check code quality,formate it with black <br>
+### build and pushes the docker images into the docker hub registry autometicly for main and beta versions separately for push on main and develop branch
+
+
