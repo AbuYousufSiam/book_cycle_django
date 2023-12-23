@@ -12,10 +12,10 @@ venv/
 db.sqlite3
 
 # Exclude Django migration files
-**src/books/migrations/
-**/__pycache__/
-**/migrations/
-migrations
+#**src/books/migrations/
+#**/__pycache__/
+#**/migrations/
+#migrations
 
 # Static folder at project root
 /static/
