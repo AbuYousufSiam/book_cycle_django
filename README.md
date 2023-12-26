@@ -18,8 +18,9 @@ myvenv\Scripts\activate
 deactivate
 
 # live site
+http://abir.momtajhossainmow.me:8000/
 
-#ftp servermaking code
+# ftp servermaking code
 python -m http.server <br>
 
 
