@@ -19,7 +19,7 @@ deactivate
 
 # live site
 
-http://bookcycle.momtajhossainmow.me/login/ <br>
+http://bookcycle.momtajhossainmow.me/ <br>
 http://abir.momtajhossainmow.me:8000/
 
 # ftp servermaking code
