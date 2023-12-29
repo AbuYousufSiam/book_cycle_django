@@ -18,6 +18,8 @@ myvenv\Scripts\activate
 deactivate
 
 # live site
+
+http://bookcycle.momtajhossainmow.me/login/ <br>
 http://abir.momtajhossainmow.me:8000/
 
 # ftp servermaking code
